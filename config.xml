@@ -1,35 +1,11 @@
-name: Build Android APK
-on: [push]
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Setup Java
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: '11'
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-
-      - name: Install Cordova
-        run: npm install -g cordova
-
-      - name: Prepare Cordova Project
-        run: |
-          cordova platform add android --no-telemetry
-          
-      - name: Build APK
-        run: cordova build android --debug --no-telemetry
-
-      - name: Upload APK
-        uses: actions/upload-artifact@v3
-        with:
-          name: Global-Se7en-APK
-          path: platforms/android/app/build/outputs/apk/debug/app-debug.apk
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.globalse7en.app" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Global Se7en</name>
+    <description>Global Se7en Movie Site</description>
+    <author email="dev@globalse7en.com" href="https://github.com/Seven25-ui">Aloy Matrix</author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <preference name="LogLevel" value="DEBUG" />
+</widget>
