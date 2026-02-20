@@ -1,11 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.globalse7en.app" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.seven25.globalse7en" version="1.0.0" xmlns="http://www.w3.org/ns/widgets">
     <name>Global Se7en</name>
-    <description>Global Se7en Movie Site</description>
-    <author email="dev@globalse7en.com" href="https://github.com/Seven25-ui">Aloy Matrix</author>
+    <description>Global Se7en Movie App</description>
+    <author email="aloy@matrix.com">Aloy Matrix</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
-    <preference name="LogLevel" value="DEBUG" />
 </widget>
