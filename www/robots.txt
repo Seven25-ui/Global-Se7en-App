@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+# I-add ni sa pinaka-ubos para dali ra makit-an sa Google imong mapa
+Sitemap: https://seven25.click/sitemap.xml

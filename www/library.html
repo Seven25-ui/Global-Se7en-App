@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Movie Library - SE7EN</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root { --accent: #ff4500; --bg: #080808; --card-bg: #151515; }
+        
+        body { 
+            background-color: var(--bg); color: white; 
+            font-family: 'Roboto', sans-serif; margin: 0; padding: 0; 
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        h2 { 
+            color: var(--accent); text-align: center; font-family: 'Orbitron';
+            font-size: 20px; padding: 25px 0; margin: 0; letter-spacing: 2px;
+        }
+
+        /* Movie Grid */
+        .grid-container { 
+            display: grid; grid-template-columns: repeat(2, 1fr); 
+            gap: 15px; padding: 15px; 
+        }
+        
+        .movie-card { 
+            background: var(--card-bg); border-radius: 12px; 
+            overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            transition: transform 0.2s; cursor: pointer;
+        }
+        .movie-card:active { transform: scale(0.95); }
+        .movie-card img { width: 100%; aspect-ratio: 2/3; object-fit: cover; display: block; }
+        
+        .movie-info { padding: 10px; }
+        .movie-title { 
+            font-size: 13px; font-weight: bold; margin-bottom: 5px;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .rating { color: #ffb400; font-size: 11px; }
+
+        /* Native Ad Styling */
+        .native-ad-box {
+            grid-column: 1 / -1; background: #111; padding: 15px;
+            border-radius: 10px; text-align: center; border: 1px dashed #333;
+        }
+
+        /* --- PLAYER OVERLAY STYLE --- */
+        #player-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: #000; z-index: 20000; overflow-y: auto;
+        }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; background: #000; }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        
+        .download-btn {
+            background: #27ae60; color: white; padding: 14px; border-radius: 8px;
+            text-decoration: none; font-weight: bold; display: block; 
+            text-align: center; margin: 20px; border: 1px solid #2ecc71;
+            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+        }
+
+/* Floating Back Button [cite: 2026-01-31] */
+.back-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: var(--accent);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 15px rgba(255, 69, 0, 0.4);
+    z-index: 1000;
+    transition: 0.3s;
+}
+.back-btn:active { transform: scale(0.9); }
+
+/* Footer Styling [cite: 2026-01-31] */
+footer {
+    text-align: center;
+    padding: 40px 20px 100px; /* Extra padding sa ubos para dle matabunan sa button */
+    border-top: 1px solid #1a1a1a;
+    margin-top: 30px;
+}
+footer p {
+    font-size: 12px;
+    color: #555;
+    letter-spacing: 1px;
+}
+footer span {
+    color: var(--accent);
+    font-weight: bold;
+}
+
+    </style>
+</head>
+<body>
+
+<a href="index.html" class="back-btn">
+    <i class="fas fa-arrow-left"></i> BACK TO HOME
+</a>
+
+
+    <h2>🔥 GLOBAL TRENDING</h2>
+    
+    <div id="movie-grid" class="grid-container"></div>
+
+    <div id="player-overlay">
+        <div style="padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; background: #080808; border-bottom: 1px solid #111;">
+            <div style="font-size: 1.2rem; color: var(--accent); font-family: 'Orbitron';">SE7EN PLAY</div>
+            <button onclick="closePlayer()" style="background:none; border:none; color:#fff; font-size:35px; cursor:pointer;">&times;</button>
+        </div>
+        
+        <div class="video-wrapper">
+            <iframe id="video-iframe" src="" allowfullscreen referrerpolicy="origin" sandbox="allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation"></iframe>
+        </div>
+
+        <a href="https://doctoredits.com/1877110" target="_blank" 
+           style="background: #e64a19; color: white; padding: 12px 0; border-radius: 5px; text-decoration: none; font-weight: bold; display: block; width: 100%; max-width: 300px; margin: 0 auto 10px auto; box-shadow: 0 4px 15px rgba(230, 74, 25, 0.4); border: 1px solid #ff5722; text-transform: uppercase; font-size: 13px; text-align: center;">
+            🚀 WATCH IN HIGH SPEED (VIP)
+        </a>
+
+        <a href="https://www.effectivegatecpm.com/fg756im2nw?key=d3235d932cc1b738b04b2390dd0a6226" target="_blank"
+           style="background: #ff3d00; color: white; padding: 12px 0; border-radius: 5px; text-decoration: none; font-weight: bold; display: block; width: 100%; max-width: 300px; margin: 0 auto; box-shadow: 0 4px 15px rgba(255, 61, 0, 0.3); border: 1px solid #ff6e40; text-transform: uppercase; font-size: 13px; text-align: center;">
+            📥 DOWNLOAD IN 1080P
+        </a>
+
+        <div style="margin: 20px; text-align: center;">
+            <p style="color: #444; font-size: 10px; margin-bottom: 10px;">RECOMMENDED FOR YOU</p>
+            <div id="container-1ebaa3930d67bc4f175aaf45aeba75dd-player"></div>
+        </div>
+
+<footer>
+    <p>© 2026 SE7EN GLOBAL. ALL RIGHTS RESERVED.</p>
+    <p style="font-size: 10px; margin-top: 5px;">POWERED BY <span>SE7EN TEAM</span>
+</footer>
+
+    <script>
+    const apiKey = '3455ebd9bf16f0b30d2ed31128bf933c';
+    const url = `https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}&region=US`;
+
+    async function fetchMovies() {
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+            const grid = document.getElementById('movie-grid');
+
+            if (!grid) return; // Siguroha nga naa ang grid sa HTML
+            grid.innerHTML = '';
+
+            data.results.slice(0, 12).forEach((movie, index) => {
+                // 1. Movie Card Logic
+                const card = document.createElement('div');
+                card.className = 'movie-card';
+                card.onclick = () => playMovie(movie.id);
+                card.innerHTML = `
+                    <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
+                    <div class="movie-info">
+                        <div class="movie-title">${movie.title}</div>
+                        <div class="rating">⭐ ${movie.vote_average.toFixed(1)}</div>
+                    </div>
+                `;
+                grid.appendChild(card);
+
+                // 2. Insert Native Banner at index 4
+                if (index === 4) {
+                    const adDiv = document.createElement('div');
+                    adDiv.className = 'native-ad-box';
+                    adDiv.innerHTML = `
+                        <p style="color: #666; font-size: 10px; margin-bottom: 8px;">Recommended for You</p>
+                        <div id="container-1ebaa3930d67bc4f175aaf45aeba75dd"></div>
+                    `;
+                    grid.appendChild(adDiv);
+
+                    const script = document.createElement('script');
+                    script.async = "async";
+                    script.dataset.cfasync = "false";
+                    script.src = "https://pl28733694.effectivegatecpm.com/1ebaa3930d67bc4f175aaf45aeba75dd/invoke.js";
+                    adDiv.appendChild(script);
+                }
+            });
+        } catch (error) { 
+            console.error("Error fetching movies:", error); 
+        }
+    }
+
+    function playMovie(id) {
+        const overlay = document.getElementById('player-overlay');
+        const iframe = document.getElementById('video-iframe');
+        
+        if (iframe) {
+            // Mao kini ang solusyon sa sad face: vidsrc.cc/v2/ [cite: 2026-01-31]
+            iframe.src = `https://vidsrc.cc/v2/embed/movie/${id}`;
+        }
+
+        if (overlay) {
+            overlay.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Stop background scroll [cite: 2026-01-31]
+        }
+    }
+
+    function closePlayer() {
+        const overlay = document.getElementById('player-overlay');
+        const iframe = document.getElementById('video-iframe');
+
+        if (overlay) overlay.style.display = 'none';
+        if (iframe) iframe.src = ''; // Stop video playback [cite: 2026-01-31]
+        document.body.style.overflow = 'auto'; // Restore background scroll [cite: 2026-01-31]
+    }
+
+    // KINI ANG IMPORTANTE: Kinahanglan i-trigger ang function inig load sa page!
+    document.addEventListener('DOMContentLoaded', fetchMovies);
+</script>
+                
+</body>
+</html>
