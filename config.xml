@@ -3,12 +3,23 @@
     <name>Global Se7en</name>
     <description>Global Se7en Movie App</description>
     <author email="guardianagene6@gmail.com">Aloy Matrix</author>
-    <content src="index.html" />
+    
+    <content src="https://seven25.click/index.html" />
+
     <access origin="*" />
+    <allow-navigation href="https://seven25.click/*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
+
+    <platform name="android">
+        <icon src="res/icon/android/icon.png" />
+        <icon background="#000000" foreground="res/icon/android/icon.png" />
+    </platform>
+
     <preference name="AndroidWindowSplashScreenAnimatedIcon" value="res/screen/android/splash.png" />
-    <preference name="AndroidWindowSplashScreenBackground" value="#468fff" />
+    <preference name="AndroidWindowSplashScreenBackground" value="#000000" />
     <preference name="SplashScreenDelay" value="3000" />
     <preference name="FadeSplashScreenDuration" value="300" />
+    
+    <preference name="Fullscreen" value="true" />
 </widget>
