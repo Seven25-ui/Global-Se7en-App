@@ -12,14 +12,7 @@
     <allow-intent href="https://*/*" />
 
     <platform name="android">
-        <icon src="res/icon/android/icon.png" />
-        <icon background="#000000" foreground="res/icon/android/icon.png" />
-        
-        <preference name="AndroidWindowSplashScreenAnimatedIcon" value="res/screen/android/splash.png" />
-        <preference name="AndroidWindowSplashScreenBackground" value="#000000" />
-        <preference name="SplashScreenDelay" value="3000" />
-        <preference name="FadeSplashScreenDuration" value="300" />
-    </platform>
+        </platform>
 
     <preference name="Fullscreen" value="true" />
     <preference name="Orientation" value="portrait" />
